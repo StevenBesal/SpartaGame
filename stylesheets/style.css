@@ -1,0 +1,78 @@
+body{
+  font-family: sans-serif;
+  border: 1px solid white;
+  background-color: black;
+}
+
+.grid {
+  border: 1px solid black;
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  font-size: 2em;
+}
+
+.topbar{
+  border: 1px solid white;
+  color: white;
+  height: 30px;
+  width: 100%;
+}
+
+.bottombar{
+  border: 1px solid white;
+  color: white;
+  height: 30px;
+  width: 100%;
+  text-align: center;
+}
+
+.home{
+  background-color: green;
+  height: 100px;
+  width: 800px;
+}
+
+.lane1{
+  background-color: grey;
+  height: 100px;
+  width: 800px;
+}
+
+.lane2{
+  background-color: grey;
+  height: 100px;
+  width: 800px;
+}
+
+.lane3{
+  background-color: grey;
+  height: 100px;
+  width: 800px;
+}
+
+.lane4{
+  background-color: grey;
+  height: 100px;
+  width: 800px;
+}
+/*  */
+.start{
+  background-color: pink;
+  height: 100px;
+  width: 800px;
+}
+
+#player{
+  height: 50px;
+  width: 50px;
+  /* background-color: purple; */
+  /* border: 5px solid black; */
+  position: relative;
+  text-align: center;
+  display: block;
+}
+
+.car{
+  background-color: red;
+}
