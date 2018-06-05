@@ -10,6 +10,7 @@ body{
   height: 200px;
   text-align: center;
   font-size: 2em;
+  table-layout: fixed;
 }
 
 .topbar{
@@ -24,6 +25,7 @@ body{
   color: white;
   height: 30px;
   width: 100%;
+  text-align: center;
 }
 
 .home{
@@ -38,7 +40,7 @@ body{
   width: 800px;
 }
 
-/* .lane2{
+.lane2{
   background-color: grey;
   height: 100px;
   width: 800px;
@@ -52,20 +54,35 @@ body{
 
 .lane4{
   background-color: grey;
+  /* border: 1px solid grey; */
   height: 100px;
   width: 800px;
-} */
+}
 
 .start{
   background-color: pink;
   height: 100px;
   width: 800px;
+  align-items: center;
+  table-layout: fixed;
 }
 
-.player{
-  background-color: purple;
+#player{
+  height: 50px;
+  width: 50px;
+  /* background-color: purple; */
+  /* border: 5px solid black; */
+  position: relative;
+  /* text-align: center; */
+  /* align-items: center; */
+  /* align-self: center; */
+  display: block;
 }
 
-.car{
+#car{
   background-color: red;
+  height: 50px;
+  width: 50px;
+  position: relative;
+  display: block;
 }
