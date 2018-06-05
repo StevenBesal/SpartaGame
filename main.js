@@ -11,71 +11,91 @@ $(document).ready(function() {
     [80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95],
   ];
   var lives = 3;
-  // var player = 'player';
-  var car = 'car';
-  var score = " ";
+  // var car = $("#car");
+  var score = 0;
   var highScore = localStorage.getItem("highScore");
-
+  var visited = 1;
 // Movement
-  var player = $("#player");
-  var space = 0;
 
-  var position = 87;
+  var position = 87;//
   $('#' + position).html('<img id="player" src="player.png" alt="">');
 
-  // function checkSpace() {
-  //   if (space === 12)
-  //   {
-  //    $(player).animate({left: "0px"}, 'fast');
-  //   }
-  // }
+  $('#reset').click(resetBoard)
 
   //keyboard, arrow keys
   $(document).keydown(function(e) {
-    $(player).keydown;
     switch(e.which) {
 
     //move left
     case 37:
-      $("#" + position).html('');
+      $("#" + position).html("1");
       position = position - 1;
       $('#' + position).html('<img id="player" src="player.png" alt="">')
-      console.log("left");
+      console.log("left " + position);
       break;
 
     //move up
     case 38:
-      $("#" + position).html('');
+      $("#" + position).html('1');
       position = position - 16;
       $('#' + position).html('<img id="player" src="player.png" alt="">')
-      console.log("up");
+      // $("#").html("1");
+      console.log("up " + position);
       break;
 
     //move right
     case 39:
-      $("#" + position).html('');
+      $("#" + position).html('1');
       position = position + 1;
       $('#' + position).html('<img id="player" src="player.png" alt="">')
-      console.log("right");
+      console.log("right " + position);
       break;
 
     //move down
     case 40:
-      $("#" + position).html('');
+      $("#" + position).html('1');
       position = position +  16;
       $('#' + position).html('<img id="player" src="player.png" alt="">')
-      console.log("down");
+      console.log("down " + position);
       break;
     };
+    checkForHome();
+    car();
+    collisionDetection();
   });
   //start position, new chickens always start in the same position
   //around grid
 
+  function car() {
+    var position = 79;
+    console.log("car is " + position);
+    $('#' + position).html('<img id="car" src="http://www.placecage.com/100/100" alt="">');
+
+    setInterval(moveRight, 500);
+    function moveRight() {
+      for (var i = 79; i <=64; i--) {
+        if ($("#" + i).html() == 1) {
+          console.log("car moving" + position);
+          collisionDetection();
+        }
+      }
+    }
+  }
+
 // Collision detection, (detection whether player push car or object enters the same block)
-  // function collision() {
-  //   if player
-  //
-  // }
+  function collisionDetection() {
+    if (car(position) == player(position)) {
+      console.log("you've been hit");
+    }
+    collision();
+  }
+
+  function collision() {
+    lives = lives - 1;
+    console.log("lives left: " + lives);
+    resetBoard();
+    resetObsticles();
+  }
 
 // High Score
   // standard high score set 20 saved
@@ -86,39 +106,56 @@ $(document).ready(function() {
     } else {
       localStorage.setItem("highScore ", + highScore)
     }
-  }
-            // var highscore = localStorage.getItem("highscore");
-            //
-            // if(highscore !== null){
-            //     if (score > highscore) {
-            //         localStorage.setItem("highscore", score);
-            //     }
-            // }
-            // else{
-            //     localStorage.setItem("highscore", score);
-            // }
+  };
 
 // Score
   // as each chicken reaches home, +1 is added to the score
   // other score bonuses can be added later
-  function score() {
 
-  }
+  function checkForHome() {
+    for (var i = 0; i <= 15; i++) {
+      if ($("#" + i).html() == 1) {
+        console.log("home");
+        gotHome();
+      }
+    }
+  };
 
-//
+  function gotHome() {
+    score = score + 1;
+    // $(".playerTurn").html("It is " + player + "'s turn'");
+    $("#score").html("SCORE:", + toString(score));
+    console.log("Chicken home, score + 1");
+    resetBoard();
+  };
 
 // Lives
   function lives() {
 
   }
 
-  // Reset if a collision is detected -1 live
-  function reset() {
+  //Rest all obsticles on the board
+  function resetObsticles() {
 
-  }
+  };
+
+  // Reset if a collision is detected -1 live
+  function resetBoard() {
+      console.log("RESET");
+      $(".grid tbody tr td").html("").removeClass("player");
+      position = 87;
+      console.log(position);
+      console.log(score);
+      $('#' + position).html('<img id="player" src="player.png" alt="">')
+  };
+
+
   // Game over if -3 lives game over, score is check if reaches new high,
   function gameOver() {
-
+    if (lives = 0) {
+      console.log("Game OVER");
+      timeRunning = !timeRunning;
+    }
   }
 
 // future game prompts to be added
