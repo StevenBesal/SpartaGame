@@ -54,10 +54,11 @@ body{
 
 .lane4{
   background-color: grey;
+  /* border: 1px solid grey; */
   height: 100px;
   width: 800px;
 }
-/*  */
+
 .start{
   background-color: pink;
   height: 100px;
@@ -67,8 +68,8 @@ body{
 }
 
 #player{
-  height: 50px;
-  width: 50px;
+  height: 80px;
+  width: 80px;
   /* background-color: purple; */
   /* border: 5px solid black; */
   position: relative;
@@ -79,9 +80,9 @@ body{
 }
 
 #car{
-  background-color: red;
-  height: 50px;
-  width: 50px;
+  /* background-color: red; */
+  height: 80px;
+  width: 80px;
   position: relative;
   display: block;
 }
