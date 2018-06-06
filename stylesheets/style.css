@@ -48,6 +48,19 @@ body{
     font-weight: bold;
 }
 
+.modalrestart {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100vh; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
 .restart:hover,
 .restart:focus {
     color: black;
@@ -79,49 +92,56 @@ body{
   text-align: center;
 }
 
-.home{
-  background-color: green;
+.home {
+  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/home.png);
+  /* background-size: cover; */
   height: 100px;
   width: 800px;
   color: green;
+  /* background-color: green; */
 }
 
 .lane1{
-  background-color: grey;
+  /* background-color: grey; */
   height: 100px;
   width: 800px;
   color: grey;
+  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/road.png);
 }
 
 .lane2{
-  background-color: grey;
+  /* background-color: grey; */
   height: 100px;
   width: 800px;
   color: grey;
+  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/road.png);
 }
 
 .lane3{
-  background-color: grey;
+  /* background-color: grey; */
   height: 100px;
   width: 800px;
   color: grey;
+  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/road.png);
 }
 
 .lane4{
-  background-color: grey;
+  /* background-color: grey; */
   /* border: 1px solid grey; */
   height: 100px;
   width: 800px;
   color: grey;
+  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/road.png);
 }
 
 .start{
-  background-color: pink;
+  /* background-color: pink; */
   height: 100px;
   width: 800px;
   align-items: center;
   table-layout: fixed;
   color: pink;
+  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/Startrail.png);
 }
 
 #player{

@@ -1,6 +1,10 @@
 $(document).ready(function() {
 
 // Global variables
+  // var car = $("#car");
+  var score = 0;
+  var highScore = 3;
+  var visited = 1;
 
 // Get the modal
   var modal = document.getElementById('myModal');
@@ -15,6 +19,8 @@ $(document).ready(function() {
 
   function start() {
 
+    var lives = 1;
+
     var grid = [
       [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
       [16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
@@ -23,11 +29,6 @@ $(document).ready(function() {
       [64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79],
       [80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95],
     ];
-    var lives = 3;
-    // var car = $("#car");
-    var score = 0;
-    var highScore = 3;
-    var visited = 1;
 
    // Starting position
     var position = 87;//
@@ -39,9 +40,9 @@ $(document).ready(function() {
     console.log(bluecar1position);
     console.log(racer1position);
 
-    setInterval(function(){car1Lane1()}, 300);
-    setInterval(function(){car1Lane2()}, 300);
-    setInterval(function(){car1Lane3()}, 200);
+    var lane1 = setInterval(function(){car1Lane1()}, 300);
+    var lane2 = setInterval(function(){car1Lane2()}, 300);
+    var lane3 = setInterval(function(){car1Lane3()}, 200);
 
     $('#' + position).html('<img id="player" src="player.png" alt="">');
 
@@ -53,34 +54,41 @@ $(document).ready(function() {
 
       //move left
       case 37:
-        $("#" + position).html(visited);
+        $("#" + position).html("");
         position = position - 1;
-        $('#' + position).html('<img id="player" src="player.png" alt="">')
+        $('#' + position).html('<img id="player" src="player.png" alt="">');
+        $('#' + position).addClass(".visited");
         // console.log("left " + position);
         break;
 
       //move up
       case 38:
-        $("#" + position).html(visited);
+        $("#" + position).html("");
         position = position - 16;
-        $('#' + position).html('<img id="player" src="player.png" alt="">')
+        $('#' + position).html('<img id="player" src="player.png" alt="">');
+        $('#' + position).addClass(".visited");
+
         // $("#").html("1");
         // console.log("up " + position);
         break;
 
       //move right
       case 39:
-        $("#" + position).html(visited);
+        $("#" + position).html("");
         position = position + 1;
-        $('#' + position).html('<img id="player" src="player.png" alt="">')
+        $('#' + position).html('<img id="player" src="player.png" alt="">');
+        $('#' + position).addClass(".visited");
+
         // console.log("right " + position);
         break;
 
       //move down
       case 40:
-        $("#" + position).html(visited);
+        $("#" + position).html("");
         position = position +  16;
-        $('#' + position).html('<img id="player" src="player.png" alt="">')
+        $('#' + position).html('<img id="player" src="player.png" alt="">');
+        $('#' + position).addClass(".visited");
+
         // console.log("down " + position);
         break;
       };
@@ -129,9 +137,8 @@ $(document).ready(function() {
       console.log("lives left: " + lives);
       resetBoard();
       resetObsticles();
-      gameOver()
+      gameOver();
     }
-
 
   // Score
     // as each chicken reaches home, +1 is added to the score
@@ -139,7 +146,7 @@ $(document).ready(function() {
 
     function checkForHome() {
       for (var i = 0; i <= 15; i++) {
-        if ($("#" + i).html() == 1) {
+        if ($("#" + i).hasClass(".visited")) {
           console.log("home");
           gotHome();
         }
@@ -185,48 +192,44 @@ $(document).ready(function() {
         console.log(position);
         // console.log("Your Score " + score);
         $('#' + position).html('<img id="player" src="player.png" alt="">')
+        $('td').removeClass(".visited");
+
     };
 
     function car1Lane1() {
-      $('#' + redcar1position).html(redcar1position);
-      redcar1position--;
+      $('#' + redcar1position).html("");
+      if (redcar1position === 64) {
+          redcar1position = 79;
+      } else {
+        redcar1position--;
+      }
       $('#' + redcar1position).html('<img id="car" src="redcar.png" alt="">');
       // console.log(redcar1position);
       collisionDetection();
-      if (redcar1position === 63) {
-        $(".grid tbody tr td").html("").removeClass("car");
-        redcar1position = 80;
-        // console.log("reached end of lane");
-        car1Lane1();
-      }
     }
 
     function car1Lane2() {
-      $('#' + bluecar1position).html(bluecar1position);
-      bluecar1position++;
+      $('#' + bluecar1position).html("");
+      if (bluecar1position === 63) {
+          bluecar1position = 48;
+      } else {
+        bluecar1position++;
+      }
       $('#' + bluecar1position).html('<img id="car" src="bluecar.png" alt="">');
       // console.log(bluecar1position);
       collisionDetection();
-      if (bluecar1position === 64) {
-        $(".grid tbody tr td").html("").removeClass("car");
-        bluecar1position = 48;
-        // console.log("reached end of lane");
-        car1Lane2();
-      }
     }
 
     function car1Lane3() {
-      $('#' + racer1position).html(racer1position);
-      racer1position--;
+      $('#' + racer1position).html("");
+      if (racer1position === 32) {
+          racer1position = 47;
+      } else {
+        racer1position--;
+      }
       $('#' + racer1position).html('<img id="car" src="racecar1.png" alt="">');
       // console.log(racer1position);
       collisionDetection();
-      if (racer1position === 32) {
-        $(".grid tbody tr td").html("").removeClass("car");
-        racer1position = 47;
-        // console.log("reached end of lane");
-        car1Lane3();
-      }
     }
 
 
@@ -234,8 +237,15 @@ $(document).ready(function() {
     function gameOver() {
       if (lives < 0) {
         console.log("Game OVER");
-        return start;
-        // var modal = document.getElementById('gameover');
+        clearInterval(lane1);
+        clearInterval(lane2);
+        clearInterval(lane3);
+        clearInterval(score);
+
+        lives = 3;
+        score = 0;
+
+        // var gameover = document.getElementById('gameover');
         // var span = document.getElementsByClassName("restart")[0];
         // span.onclick = function() {
         //     modal.style.display = "none";
@@ -251,7 +261,4 @@ $(document).ready(function() {
   // future game prompts to be added
   }
 });
-
-
-
 // timeRunning = !timeRunning  pause the game, gameover man
