@@ -69,7 +69,7 @@ $(document).ready(function() {
   function car(position) {
     position = 79;
     // console.log("car is " + position);
-    $('#' + position).html('<img id="car" src="http://www.placecage.com/100/100" alt="">');
+    $('#' + position).html('<img id="car" src="redcar.png" alt="">');
 
     return position;
 
