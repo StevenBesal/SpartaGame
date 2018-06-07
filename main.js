@@ -3,7 +3,6 @@ $(document).ready(function() {
 // Global variables
   // var car = $("#car");
   var score = 0;
-  var highScore = 3;
   var visited = 1;
 
 // Get the modal
@@ -19,7 +18,8 @@ $(document).ready(function() {
 
   function start() {
 
-    var lives = 1;
+    var highScore = 10;
+    var lives = 3;
 
     var grid = [
       [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
@@ -33,20 +33,25 @@ $(document).ready(function() {
    // Starting position
     var position = 87;//
     var redcar1position = 80;
+    var redcar2position = 80;
     var bluecar1position = 48;
     var racer1position = 47;
+    var van1position = 16;
 
-    console.log(redcar1position);
-    console.log(bluecar1position);
-    console.log(racer1position);
+    // console.log(redcar1position);
+    // console.log(redcar2position);
+    // console.log(bluecar1position);
+    // console.log(racer1position);
 
     var lane1 = setInterval(function(){car1Lane1()}, 300);
+    // var lane1 = setInterval(function(){car2Lane1().delay(900)}, 300);
     var lane2 = setInterval(function(){car1Lane2()}, 300);
     var lane3 = setInterval(function(){car1Lane3()}, 200);
+    var lane4 = setInterval(function(){car1Lane4()}, 500);
 
     $('#' + position).html('<img id="player" src="player.png" alt="">');
 
-    $('#reset').click(resetBoard)
+    $('#reset').click(restart)
 
     //keyboard, arrow keys
     $(document).keydown(function(e) {
@@ -122,10 +127,16 @@ $(document).ready(function() {
       if (redcar1position == position) {
         console.log("You've been Hit");
         collision();
+      }else if (redcar2position == position) {
+        console.log("You've been Hit");
+        collision();
       }else if (bluecar1position == position) {
         console.log("You've been Hit");
         collision();
       }else if (racer1position == position) {
+        console.log("You've been Hit");
+        collision();
+      }else if (van1position == position) {
         console.log("You've been Hit");
         collision();
       }
@@ -193,8 +204,23 @@ $(document).ready(function() {
         // console.log("Your Score " + score);
         $('#' + position).html('<img id="player" src="player.png" alt="">')
         $('td').removeClass(".visited");
-
     };
+
+    function restart() {
+      console.log("Restart");
+      // $('td').removeClass(".position");
+      // $(".grid tbody tr td").html("").removeClass("player");
+      // console.log(position);
+      // $('td').removeClass(".visited");
+      // $('td').removeClass(".score");
+      // $('td').removeClass(".lives");
+      $("#score").html("SCORE: " + 0);
+      score = score - score;
+      $("#lives").html("LIVES: " + 3);
+      lives = lives + 4;
+      console.log(lives);
+      resetBoard();
+    }
 
     function car1Lane1() {
       $('#' + redcar1position).html("");
@@ -205,6 +231,18 @@ $(document).ready(function() {
       }
       $('#' + redcar1position).html('<img id="car" src="redcar.png" alt="">');
       // console.log(redcar1position);
+      collisionDetection();
+    }
+
+    function car2Lane1() {
+      $('#' + redcar2position).html("");
+      if (redcar2position === 64) {
+          redcar2position = 79;
+      } else {
+        redcar2position--;
+      }
+      $('#' + redcar2position).html('<img id="car" src="redcar.png" alt="">');
+      // console.log(redcar2position);
       collisionDetection();
     }
 
@@ -232,32 +270,40 @@ $(document).ready(function() {
       collisionDetection();
     }
 
+    function car1Lane4() {
+      $('#' + van1position).html("");
+      if (van1position === 31) {
+          van1position = 16;
+      } else {
+        van1position++;
+      }
+      $('#' + van1position).html('<img id="car" src="greenvan.png" alt="">');
+      // console.log(racer1position);
+      collisionDetection();
+    }
 
     // Game over if -3 lives game over, score is check if reaches new high,
+
     function gameOver() {
       if (lives < 0) {
         console.log("Game OVER");
-        clearInterval(lane1);
-        clearInterval(lane2);
-        clearInterval(lane3);
-        clearInterval(score);
+        restart();
+        // clearInterval(lane1);
+        // clearInterval(lane2);
+        // clearInterval(lane3);
 
-        lives = 3;
-        score = 0;
-
-        // var gameover = document.getElementById('gameover');
-        // var span = document.getElementsByClassName("restart")[0];
-        // span.onclick = function() {
-        //     modal.style.display = "none";
-        //     console.log("let's Start Running");
-        //     start();
-        // }
+        var gameover = document.getElementById('gameover');
+        var span = document.getElementsByClassName("restart")[0];
+        span.onclick = function() {
+            modal.style.display = "none";
+            console.log("let's Start Running");
+            restart();
+        }
 
         // function resetBoard(){}
         // timeRunning = !timeRunning;
       }
     }
-
   // future game prompts to be added
   }
 });
