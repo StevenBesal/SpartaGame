@@ -3,7 +3,7 @@ $(document).ready(function() {
 // Global variables
   var score = 0;
   var visited = 1;
-  var highScore = 3;
+  var highScore = "";
   var aud = document.getElementById("backgroundmusic");
   aud.volume = 0.5; // default 1 means 100%
 
@@ -17,6 +17,7 @@ $(document).ready(function() {
       console.log("let's Start Running");
       start();
   }
+
   function start() {
 
     var lives = 3;
@@ -31,7 +32,7 @@ $(document).ready(function() {
     ];
     document.getElementById('backgroundmusic').play();
 
-   // Starting position for player and cars
+    // Starting position for player and cars
     var position = 103;//
     var redcar1position = 95;
     var redcar2position = 92;
@@ -43,11 +44,6 @@ $(document).ready(function() {
     var van1position = 16;
     var van2position = 18;
     var van3position = 20;
-
-    // console.log(redcar1position);
-    // console.log(redcar2position);
-    // console.log(bluecar1position);
-    // console.log(redwhiteracer1position);
 
     //intervals for the moving cars using timed speeds
     var lane1 = setInterval(function(){car1Lane1()}, 300);
@@ -66,9 +62,9 @@ $(document).ready(function() {
     $('#reset').click(restart)
     $('#pause').click(pause)
 
-    //keyboard, arrow keys, movment for player
     $(document).keydown(function(e) {
       switch(e.which) {
+        //keyboard, arrow keys, movment for player
 
       //move left
       case 37:
@@ -113,24 +109,6 @@ $(document).ready(function() {
       checkForHome();
       collisionDetection();
     });
-
-    // function car(position) {
-    //   position = 79;
-    //   // console.log("car is " + position);
-    //   $('#' + position).html('<img id="car" src="redcar.png" alt="">');
-    //
-    //   return position;
-    //
-    //   setInterval(moveRight, 500);
-    //    function moveRight() {
-    //      for (var i = 79; i <=64; i--) {
-    //        if ($("#" + i).html() == 1) {
-    //          console.log("car moving" + position);
-    //          collisionDetection();
-             // }
-           // }
-  //     }
-  //   }
 
     function collisionDetection() {
       // Collision detection, (detection whether player push car or object enters the same cell)
@@ -228,16 +206,8 @@ $(document).ready(function() {
     function restart() {
       // Reset if a collision is detected -1 live
       console.log("Restart");
-      // $('td').removeClass(".position");
-      // $(".grid tbody tr td").html("").removeClass("player");
-      // console.log(position);
-      // $('td').removeClass(".visited");
-      // $('td').removeClass(".score");
-      // $('td').removeClass(".lives");
       $("#score").html("SCORE: " + 0);
       score = 0;
-      // $("#highscore").html("NEW HIGHSCORE: " + highscore);
-      // console.log("highscore after death " + highscore);
       $("#lives").html("LIVES: " + 3);
       lives = lives + 4;
       console.log(lives);
@@ -369,10 +339,16 @@ $(document).ready(function() {
       if (lives < 0) {
         console.log("Game OVER");
         // clearInterval(lane1);
+        // clearInterval(lane1car2);
         // clearInterval(lane2);
+        // clearInterval(lane2car2);
         // clearInterval(lane3);
+        // clearInterval(lane3car2);
+        // clearInterval(lane4);
+        // clearInterval(lane5);
+        // clearInterval(lane5van2);
+        // clearInterval(lane5van3);
         restart();
-
         var gameover = document.getElementById('gameover');
         var span = document.getElementsByClassName("restart")[0];
         span.onclick = function() {
@@ -385,21 +361,23 @@ $(document).ready(function() {
         // timeRunning = !timeRunning;
       }
     }
-  // future game prompts to be added
-  }
 
-  function pause() {
-    console.log("Paused");
-    clearInterval(lane1);
-    clearInterval(lane1car2);
-    clearInterval(lane2);
-    clearInterval(lane2car2);
-    clearInterval(lane3);
-    clearInterval(lane3car2);
-    clearInterval(lane4);
-    clearInterval(lane5);
-    clearInterval(lane5car2);
-    clearInterval(lane5car3);
+    function pause() {
+      console.log("Paused");
+      clearInterval(lane1);
+      clearInterval(lane1car2);
+      clearInterval(lane2);
+      clearInterval(lane2car2);
+      clearInterval(lane3);
+      clearInterval(lane3car2);
+      clearInterval(lane4);
+      clearInterval(lane5);
+      clearInterval(lane5van2);
+      clearInterval(lane5van3);
+    }
+
   }
+  // future game prompts to be added
+
 });
 // timeRunning = !timeRunning  pause the game, gameover man
