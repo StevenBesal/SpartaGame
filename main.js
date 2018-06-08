@@ -1,9 +1,10 @@
 $(document).ready(function() {
 
 // Global variables
-  // var car = $("#car");
   var score = 0;
   var visited = 1;
+  var aud = document.getElementById("backgroundmusic");
+  aud.volume = 0.5; // default 1 means 100%
 
 // Get the modal
   var modal = document.getElementById('myModal');
@@ -20,7 +21,6 @@ $(document).ready(function() {
 
     var highScore = 10;
     var lives = 3;
-
     var grid = [
       [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
       [16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
@@ -28,26 +28,38 @@ $(document).ready(function() {
       [48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63],
       [64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79],
       [80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95],
+      [96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111],
     ];
+    document.getElementById('backgroundmusic').play();
 
    // Starting position
-    var position = 87;//
-    var redcar1position = 80;
-    var redcar2position = 80;
-    var bluecar1position = 48;
-    var racer1position = 47;
+    var position = 103;//
+    var redcar1position = 95;
+    var redcar2position = 92;
+    var bluecar1position = 64;
+    var bluecar2position = 69;
+    var redwhiteracer1position = 63;
+    var redwhiteracer2position = 55;
+    var racer2position = 32;
     var van1position = 16;
+    var van2position = 18;
+    var van3position = 20;
 
     // console.log(redcar1position);
     // console.log(redcar2position);
     // console.log(bluecar1position);
-    // console.log(racer1position);
+    // console.log(redwhiteracer1position);
 
     var lane1 = setInterval(function(){car1Lane1()}, 300);
-    // var lane1 = setInterval(function(){car2Lane1().delay(900)}, 300);
+    var lane1car2 = setInterval(function(){car2Lane1()}, 300);
     var lane2 = setInterval(function(){car1Lane2()}, 300);
+    var lane2car2 = setInterval(function(){car2Lane2()}, 300);
     var lane3 = setInterval(function(){car1Lane3()}, 200);
-    var lane4 = setInterval(function(){car1Lane4()}, 500);
+    var lane3car2 = setInterval(function(){car2Lane3()}, 200);
+    var lane4 = setInterval(function(){car1Lane4()}, 100);
+    var lane5 = setInterval(function(){car1Lane5()}, 500);
+    var lane5van2 = setInterval(function(){car2Lane5()}, 500);
+    var lane5van3 = setInterval(function(){car3Lane5()}, 500);
 
     $('#' + position).html('<img id="player" src="player.png" alt="">');
 
@@ -121,8 +133,8 @@ $(document).ready(function() {
   //     }
   //   }
 
-  // Collision detection, (detection whether player push car or object enters the same block)
     function collisionDetection() {
+      // Collision detection, (detection whether player push car or object enters the same block)
       // console.log(position);
       if (redcar1position == position) {
         console.log("You've been Hit");
@@ -133,10 +145,25 @@ $(document).ready(function() {
       }else if (bluecar1position == position) {
         console.log("You've been Hit");
         collision();
-      }else if (racer1position == position) {
+      }else if (bluecar2position == position) {
+        console.log("You've been Hit");
+        collision();
+      }else if (redwhiteracer1position == position) {
+        console.log("You've been Hit");
+        collision();
+      }else if (redwhiteracer2position == position) {
+        console.log("You've been Hit");
+        collision();
+      }else if (racer2position == position) {
         console.log("You've been Hit");
         collision();
       }else if (van1position == position) {
+        console.log("You've been Hit");
+        collision();
+      }else if (van2position == position) {
+        console.log("You've been Hit");
+        collision();
+      }else if (van3position == position) {
         console.log("You've been Hit");
         collision();
       }
@@ -146,14 +173,10 @@ $(document).ready(function() {
       lives = lives - 1;
       $("#lives").html("LIVES: " + lives);
       console.log("lives left: " + lives);
+      document.getElementById('chickhit').play();
       resetBoard();
-      resetObsticles();
       gameOver();
     }
-
-  // Score
-    // as each chicken reaches home, +1 is added to the score
-    // other score bonuses can be added later
 
     function checkForHome() {
       for (var i = 0; i <= 15; i++) {
@@ -165,18 +188,22 @@ $(document).ready(function() {
     };
 
     function gotHome() {
+      // Score
+      // as each chicken reaches home, +1 is added to the score
+      // other score bonuses can be added later
       score = score + 1;
       // $(".playerTurn").html("It is " + player + "'s turn'");
       $("#score").html("SCORE: " + score);
       console.log("Chicken's home, " + score);
+      document.getElementById('chicksaved').play();
       resetBoard();
       newHighScore();
     };
 
-    // High Score
-    // standard high score set 20 saved
-    // if player score is <20 new score appears (after all lives lose check this)
     function newHighScore() {
+      // High Score
+      // standard high score set 20 saved
+      // if player score is <20 new score appears (after all lives lose check this)
       if (score > highScore) {
         $("#highscore").html("NEW HIGHSCORE: " + score);
         console.log("New highScore");
@@ -185,21 +212,10 @@ $(document).ready(function() {
       }
     };
 
-  // Lives
-    function lives() {
-
-    }
-
-    //Rest all obsticles on the board
-    function resetObsticles() {
-
-    };
-
-    // Reset if a collision is detected -1 live
     function resetBoard() {
         console.log("RESET");
         $(".grid tbody tr td").html("").removeClass("player");
-        position = 87;
+        position = 103;
         console.log(position);
         // console.log("Your Score " + score);
         $('#' + position).html('<img id="player" src="player.png" alt="">')
@@ -207,6 +223,7 @@ $(document).ready(function() {
     };
 
     function restart() {
+      // Reset if a collision is detected -1 live
       console.log("Restart");
       // $('td').removeClass(".position");
       // $(".grid tbody tr td").html("").removeClass("player");
@@ -224,8 +241,8 @@ $(document).ready(function() {
 
     function car1Lane1() {
       $('#' + redcar1position).html("");
-      if (redcar1position === 64) {
-          redcar1position = 79;
+      if (redcar1position === 80) {
+          redcar1position = 95;
       } else {
         redcar1position--;
       }
@@ -236,8 +253,8 @@ $(document).ready(function() {
 
     function car2Lane1() {
       $('#' + redcar2position).html("");
-      if (redcar2position === 64) {
-          redcar2position = 79;
+      if (redcar2position === 80) {
+          redcar2position = 95;
       } else {
         redcar2position--;
       }
@@ -248,8 +265,8 @@ $(document).ready(function() {
 
     function car1Lane2() {
       $('#' + bluecar1position).html("");
-      if (bluecar1position === 63) {
-          bluecar1position = 48;
+      if (bluecar1position === 79) {
+          bluecar1position = 64;
       } else {
         bluecar1position++;
       }
@@ -258,33 +275,92 @@ $(document).ready(function() {
       collisionDetection();
     }
 
-    function car1Lane3() {
-      $('#' + racer1position).html("");
-      if (racer1position === 32) {
-          racer1position = 47;
+    function car2Lane2() {
+      $('#' + bluecar2position).html("");
+      if (bluecar2position === 79) {
+          bluecar2position = 64;
       } else {
-        racer1position--;
+        bluecar2position++;
       }
-      $('#' + racer1position).html('<img id="car" src="racecar1.png" alt="">');
-      // console.log(racer1position);
+      $('#' + bluecar2position).html('<img id="car" src="bluecar.png" alt="">');
+      // console.log(bluecar1position);
+      collisionDetection();
+    }
+
+    function car1Lane3() {
+      $('#' + redwhiteracer1position).html("");
+      if (redwhiteracer1position === 48) {
+          redwhiteracer1position = 63;
+      } else {
+        redwhiteracer1position--;
+      }
+      $('#' + redwhiteracer1position).html('<img id="car" src="racecar1.png" alt="">');
+      // console.log(redwhiteracer1position);
+      collisionDetection();
+    }
+
+    function car2Lane3() {
+      $('#' + redwhiteracer2position).html("");
+      if (redwhiteracer2position === 48) {
+          redwhiteracer2position = 63;
+      } else {
+        redwhiteracer2position--;
+      }
+      $('#' + redwhiteracer2position).html('<img id="car" src="racecar1.png" alt="">');
+      // console.log(redwhiteracer1position);
       collisionDetection();
     }
 
     function car1Lane4() {
+      $('#' + racer2position).html("");
+      if (racer2position === 47) {
+          racer2position = 32;
+      } else {
+        racer2position++;
+      }
+      $('#' + racer2position).html('<img id="car" src="racecar2.png" alt="">');
+      // console.log(redwhiteracer1position);
+      collisionDetection();
+    }
+
+    function car1Lane5() {
       $('#' + van1position).html("");
       if (van1position === 31) {
-          van1position = 16;
+          van1position =16;
       } else {
         van1position++;
       }
       $('#' + van1position).html('<img id="car" src="greenvan.png" alt="">');
-      // console.log(racer1position);
+      console.log(van1position);
       collisionDetection();
     }
 
-    // Game over if -3 lives game over, score is check if reaches new high,
+    function car2Lane5() {
+      $('#' + van2position).html("");
+      if (van2position === 31) {
+          van2position =16;
+      } else {
+        van2position++;
+      }
+      $('#' + van2position).html('<img id="car" src="greenvan.png" alt="">');
+      console.log(van2position);
+      collisionDetection();
+    }
+
+    function car3Lane5() {
+      $('#' + van3position).html("");
+      if (van3position === 31) {
+          van3position =16;
+      } else {
+        van3position++;
+      }
+      $('#' + van3position).html('<img id="car" src="greenvan.png" alt="">');
+      console.log(van3position);
+      collisionDetection();
+    }
 
     function gameOver() {
+      // Game over if -3 lives game over, score is check if reaches new high,
       if (lives < 0) {
         console.log("Game OVER");
         restart();

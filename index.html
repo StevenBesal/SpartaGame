@@ -9,7 +9,6 @@
   </head>
   <body>
     <div class="container">
-      <!-- <img id="player" src="player.png" alt=""> -->
 
       <!-- The Modal -->
       <div id="myModal" class="modalstart">
@@ -19,17 +18,16 @@
           <h1>Chicken RUN!</h1>
           <p>The chickens have escaped the Koop, of the farmer, help them 'cross the road' to reach the Koop Free Country</p>
           <span class="close">START RUNNING!!!</span>
-          <!-- <button id="start">START RUNNING!!!</button> -->
         </div>
 
       </div>
-      <!--  -->
 
-      <!-- <div class="topbar">
-        <span id="score">SCORE: 0</span>
-        <span id="highscore">HIGH SCORE: 20</span>
-        <span id="lives">LIVES: 3</span>
-      </div> -->
+        <audio id="chicksaved" src="/Users/tech-a52/Desktop/Sparta/SpartaGame/chickensaved.mp3" preload="auto"></audio>
+        <audio id="chickhit" src="/Users/tech-a52/Desktop/Sparta/SpartaGame/runover.mp3" preload="auto"></audio>
+
+        <audio autoplay preload='auto' loop id="backgroundmusic">
+          <source src="/Users/tech-a52/Desktop/Sparta/SpartaGame/backgroundmusic.mp3" type="audio/mpeg" >
+        </audio>
 
       <table class="topbar">
         <thead>
@@ -142,7 +140,7 @@
           </tr>
         </tbody>
         <tbody>
-          <tr class="start">
+          <tr class="lane5">
             <td id="80" data-num="80"></td>
             <td id="81" data-num="81"></td>
             <td id="82" data-num="82"></td>
@@ -161,7 +159,7 @@
             <td id="95" data-num="95"></td>
           </tr>
         </tbody>
-        <!-- <tbody>
+        <tbody>
           <tr class="start">
             <td id="96" data-num="96"></td>
             <td id="97" data-num="97"></td>
@@ -180,7 +178,7 @@
             <td id="110" data-num="110"></td>
             <td id="111" data-num="111"></td>
           </tr>
-        </tbody> -->
+        </tbody>
       </table>
       <table class="bottombar">
         <thead>
@@ -191,7 +189,6 @@
           </tr>
         </thead>
       </table>
-      <!-- <button id="reset">Reset Board</button> -->
 
       <div id="gameover" class="modalrestart">
 

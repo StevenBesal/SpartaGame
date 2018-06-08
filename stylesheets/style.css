@@ -49,7 +49,7 @@ body{
 }
 
 .modalrestart {
-    /* display: none; /* Hidden by default */ */
+    display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -128,6 +128,15 @@ body{
 }
 
 .lane4{
+  /* background-color: grey; */
+  /* border: 1px solid grey; */
+  height: 100px;
+  width: 800px;
+  color: grey;
+  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/road.png);
+}
+
+.lane5{
   /* background-color: grey; */
   /* border: 1px solid grey; */
   height: 100px;
