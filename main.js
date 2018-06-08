@@ -3,7 +3,7 @@ $(document).ready(function() {
 // Global variables
   var score = 0;
   var visited = 1;
-  var highScore = 1;
+  var highScore = 3;
   var aud = document.getElementById("backgroundmusic");
   aud.volume = 0.5; // default 1 means 100%
 
@@ -61,7 +61,7 @@ $(document).ready(function() {
     var lane5van2 = setInterval(function(){car2Lane5()}, 500);
     var lane5van3 = setInterval(function(){car3Lane5()}, 500);
 
-    $('#' + position).html('<img id="player" src="player.png" alt="">');
+    $('#' + position).html('<img id="player" src="Images/player.png" alt="">');
 
     $('#reset').click(restart)
     $('#pause').click(pause)
@@ -74,7 +74,7 @@ $(document).ready(function() {
       case 37:
         $("#" + position).html("");
         position = position - 1;
-        $('#' + position).html('<img id="player" src="player.png" alt="">');
+        $('#' + position).html('<img id="player" src="Images/player.png" alt="">');
         $('#' + position).addClass(".visited");
         // console.log("left " + position);
         break;
@@ -83,7 +83,7 @@ $(document).ready(function() {
       case 38:
         $("#" + position).html("");
         position = position - 16;
-        $('#' + position).html('<img id="player" src="player.png" alt="">');
+        $('#' + position).html('<img id="player" src="Images/player.png" alt="">');
         $('#' + position).addClass(".visited");
 
         // $("#").html("1");
@@ -94,7 +94,7 @@ $(document).ready(function() {
       case 39:
         $("#" + position).html("");
         position = position + 1;
-        $('#' + position).html('<img id="player" src="player.png" alt="">');
+        $('#' + position).html('<img id="player" src="Images/player.png" alt="">');
         $('#' + position).addClass(".visited");
 
         // console.log("right " + position);
@@ -104,7 +104,7 @@ $(document).ready(function() {
       case 40:
         $("#" + position).html("");
         position = position +  16;
-        $('#' + position).html('<img id="player" src="player.png" alt="">');
+        $('#' + position).html('<img id="player" src="Images/player.png" alt="">');
         $('#' + position).addClass(".visited");
 
         // console.log("down " + position);
@@ -221,7 +221,7 @@ $(document).ready(function() {
         position = 103;
         console.log(position);
         // console.log("Your Score " + score);
-        $('#' + position).html('<img id="player" src="player.png" alt="">')
+        $('#' + position).html('<img id="player" src="Images/player.png" alt="">')
         $('td').removeClass(".visited");
     };
 
@@ -251,7 +251,7 @@ $(document).ready(function() {
       } else {
         redcar1position--;
       }
-      $('#' + redcar1position).html('<img id="car" src="redcar.png" alt="">');
+      $('#' + redcar1position).html('<img id="car" src="Images/redcar.png" alt="">');
       // console.log(redcar1position);
       collisionDetection();
     }
@@ -263,7 +263,7 @@ $(document).ready(function() {
       } else {
         redcar2position--;
       }
-      $('#' + redcar2position).html('<img id="car" src="redcar.png" alt="">');
+      $('#' + redcar2position).html('<img id="car" src="Images/redcar.png" alt="">');
       // console.log(redcar2position);
       collisionDetection();
     }
@@ -275,7 +275,7 @@ $(document).ready(function() {
       } else {
         bluecar1position++;
       }
-      $('#' + bluecar1position).html('<img id="car" src="bluecar.png" alt="">');
+      $('#' + bluecar1position).html('<img id="car" src="Images/bluecar.png" alt="">');
       // console.log(bluecar1position);
       collisionDetection();
     }
@@ -287,7 +287,7 @@ $(document).ready(function() {
       } else {
         bluecar2position++;
       }
-      $('#' + bluecar2position).html('<img id="car" src="bluecar.png" alt="">');
+      $('#' + bluecar2position).html('<img id="car" src="Images/bluecar.png" alt="">');
       // console.log(bluecar1position);
       collisionDetection();
     }
@@ -299,7 +299,7 @@ $(document).ready(function() {
       } else {
         redwhiteracer1position--;
       }
-      $('#' + redwhiteracer1position).html('<img id="car" src="racecar1.png" alt="">');
+      $('#' + redwhiteracer1position).html('<img id="car" src="Images/racecar1.png" alt="">');
       // console.log(redwhiteracer1position);
       collisionDetection();
     }
@@ -311,7 +311,7 @@ $(document).ready(function() {
       } else {
         redwhiteracer2position--;
       }
-      $('#' + redwhiteracer2position).html('<img id="car" src="racecar1.png" alt="">');
+      $('#' + redwhiteracer2position).html('<img id="car" src="Images/racecar1.png" alt="">');
       // console.log(redwhiteracer1position);
       collisionDetection();
     }
@@ -323,7 +323,7 @@ $(document).ready(function() {
       } else {
         racer2position++;
       }
-      $('#' + racer2position).html('<img id="car" src="racecar2.png" alt="">');
+      $('#' + racer2position).html('<img id="car" src="Images/racecar2.png" alt="">');
       // console.log(redwhiteracer1position);
       collisionDetection();
     }
@@ -335,7 +335,7 @@ $(document).ready(function() {
       } else {
         van1position++;
       }
-      $('#' + van1position).html('<img id="car" src="greenvan.png" alt="">');
+      $('#' + van1position).html('<img id="car" src="Images/greenvan.png" alt="">');
       // console.log(van1position);
       collisionDetection();
     }
@@ -347,7 +347,7 @@ $(document).ready(function() {
       } else {
         van2position++;
       }
-      $('#' + van2position).html('<img id="car" src="greenvan.png" alt="">');
+      $('#' + van2position).html('<img id="car" src="Images/greenvan.png" alt="">');
       // console.log(van2position);
       collisionDetection();
     }
@@ -359,7 +359,7 @@ $(document).ready(function() {
       } else {
         van3position++;
       }
-      $('#' + van3position).html('<img id="car" src="greenvan.png" alt="">');
+      $('#' + van3position).html('<img id="car" src="Images/greenvan.png" alt="">');
       // console.log(van3position);
       collisionDetection();
     }

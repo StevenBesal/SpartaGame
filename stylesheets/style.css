@@ -19,7 +19,7 @@ body{
 
 /* Modal Content/Box */
 .modal-content {
-  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/pixil-frame-1.png);
+  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/Images/pixil-frame-1.png);
   width: 80%;
   height: 40%;
     /* background-color: #fefefe; */
@@ -107,7 +107,7 @@ body{
 }
 
 .home {
-  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/home.png);
+  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/Images/home.png);
   /* background-size: cover; */
   height: 100px;
   width: 800px;
@@ -120,7 +120,7 @@ body{
   height: 100px;
   width: 800px;
   color: grey;
-  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/toproad.png);
+  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/Images/toproad.png);
 }
 
 .lane2{
@@ -128,7 +128,7 @@ body{
   height: 100px;
   width: 800px;
   color: grey;
-  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/road.png);
+  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/Images/road.png);
 }
 
 .lane3{
@@ -136,7 +136,7 @@ body{
   height: 100px;
   width: 800px;
   color: grey;
-  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/road.png);
+  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/Images/road.png);
 }
 
 .lane4{
@@ -145,7 +145,7 @@ body{
   height: 100px;
   width: 800px;
   color: grey;
-  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/road.png);
+  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/Images/road.png);
 }
 
 .lane5{
@@ -154,7 +154,7 @@ body{
   height: 100px;
   width: 800px;
   color: grey;
-  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/road.png);
+  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/Images/road.png);
 }
 
 .start{
@@ -164,7 +164,7 @@ body{
   align-items: center;
   table-layout: fixed;
   color: pink;
-  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/Startrail.png);
+  background-image: url(/Users/tech-a52/Desktop/Sparta/SpartaGame/Images/Startrail.png);
 }
 
 
