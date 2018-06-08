@@ -19,7 +19,6 @@ $(document).ready(function() {
   }
   function start() {
 
-
     var lives = 3;
     var grid = [
       [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
@@ -32,7 +31,7 @@ $(document).ready(function() {
     ];
     document.getElementById('backgroundmusic').play();
 
-   // Starting position
+   // Starting position for player and cars
     var position = 103;//
     var redcar1position = 95;
     var redcar2position = 92;
@@ -50,6 +49,7 @@ $(document).ready(function() {
     // console.log(bluecar1position);
     // console.log(redwhiteracer1position);
 
+    //intervals for the moving cars using timed speeds
     var lane1 = setInterval(function(){car1Lane1()}, 300);
     var lane1car2 = setInterval(function(){car2Lane1()}, 300);
     var lane2 = setInterval(function(){car1Lane2()}, 300);
@@ -66,7 +66,7 @@ $(document).ready(function() {
     $('#reset').click(restart)
     $('#pause').click(pause)
 
-    //keyboard, arrow keys
+    //keyboard, arrow keys, movment for player
     $(document).keydown(function(e) {
       switch(e.which) {
 
@@ -113,7 +113,6 @@ $(document).ready(function() {
       checkForHome();
       collisionDetection();
     });
-    //start position, new chickens always start in the same position
 
     // function car(position) {
     //   position = 79;
@@ -134,7 +133,7 @@ $(document).ready(function() {
   //   }
 
     function collisionDetection() {
-      // Collision detection, (detection whether player push car or object enters the same block)
+      // Collision detection, (detection whether player push car or object enters the same cell)
       // console.log(position);
       if (redcar1position == position) {
         console.log("You've been Hit");
@@ -170,6 +169,7 @@ $(document).ready(function() {
     }
 
     function collision() {
+      // as a collision is detection this function removes a life and produces a sound as well as activating other functions for reseting the player and checking if all lives are lost
       lives = lives - 1;
       $("#lives").html("LIVES: " + lives);
       console.log("lives left: " + lives);
@@ -179,6 +179,7 @@ $(document).ready(function() {
     }
 
     function checkForHome() {
+      //checking if the player reaches the home zone
       for (var i = 0; i <= 15; i++) {
         if ($("#" + i).hasClass(".visited")) {
           console.log("home");
@@ -214,6 +215,7 @@ $(document).ready(function() {
     };
 
     function resetBoard() {
+      //resets the player position to start upon death
         console.log("RESET");
         $(".grid tbody tr td").html("").removeClass("player");
         position = 103;
@@ -234,9 +236,9 @@ $(document).ready(function() {
       // $('td').removeClass(".lives");
       $("#score").html("SCORE: " + 0);
       score = 0;
+      // $("#highscore").html("NEW HIGHSCORE: " + highscore);
+      // console.log("highscore after death " + highscore);
       $("#lives").html("LIVES: " + 3);
-      $("#highscore").html("NEW HIGHSCORE: " + highscore);
-      console.log("highscore after death " + highscore);
       lives = lives + 4;
       console.log(lives);
       resetBoard();
