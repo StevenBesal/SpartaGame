@@ -3,6 +3,7 @@ $(document).ready(function() {
 // Global variables
   var score = 0;
   var visited = 1;
+  var highScore = 1;
   var aud = document.getElementById("backgroundmusic");
   aud.volume = 0.5; // default 1 means 100%
 
@@ -16,10 +17,9 @@ $(document).ready(function() {
       console.log("let's Start Running");
       start();
   }
-
   function start() {
 
-    var highScore = 10;
+
     var lives = 3;
     var grid = [
       [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
@@ -64,6 +64,7 @@ $(document).ready(function() {
     $('#' + position).html('<img id="player" src="player.png" alt="">');
 
     $('#reset').click(restart)
+    $('#pause').click(pause)
 
     //keyboard, arrow keys
     $(document).keydown(function(e) {
@@ -113,7 +114,6 @@ $(document).ready(function() {
       collisionDetection();
     });
     //start position, new chickens always start in the same position
-    //around grid
 
     // function car(position) {
     //   position = 79;
@@ -205,7 +205,8 @@ $(document).ready(function() {
       // standard high score set 20 saved
       // if player score is <20 new score appears (after all lives lose check this)
       if (score > highScore) {
-        $("#highscore").html("NEW HIGHSCORE: " + score);
+        highscore = score;
+        $("#highscore").html("NEW HIGHSCORE: " + highscore);
         console.log("New highScore");
       } else {
         $("#highscore").html("HIGHSCORE: " + highScore)
@@ -232,8 +233,10 @@ $(document).ready(function() {
       // $('td').removeClass(".score");
       // $('td').removeClass(".lives");
       $("#score").html("SCORE: " + 0);
-      score = score - score;
+      score = 0;
       $("#lives").html("LIVES: " + 3);
+      $("#highscore").html("NEW HIGHSCORE: " + highscore);
+      console.log("highscore after death " + highscore);
       lives = lives + 4;
       console.log(lives);
       resetBoard();
@@ -331,7 +334,7 @@ $(document).ready(function() {
         van1position++;
       }
       $('#' + van1position).html('<img id="car" src="greenvan.png" alt="">');
-      console.log(van1position);
+      // console.log(van1position);
       collisionDetection();
     }
 
@@ -343,7 +346,7 @@ $(document).ready(function() {
         van2position++;
       }
       $('#' + van2position).html('<img id="car" src="greenvan.png" alt="">');
-      console.log(van2position);
+      // console.log(van2position);
       collisionDetection();
     }
 
@@ -355,7 +358,7 @@ $(document).ready(function() {
         van3position++;
       }
       $('#' + van3position).html('<img id="car" src="greenvan.png" alt="">');
-      console.log(van3position);
+      // console.log(van3position);
       collisionDetection();
     }
 
@@ -363,10 +366,10 @@ $(document).ready(function() {
       // Game over if -3 lives game over, score is check if reaches new high,
       if (lives < 0) {
         console.log("Game OVER");
-        restart();
         // clearInterval(lane1);
         // clearInterval(lane2);
         // clearInterval(lane3);
+        restart();
 
         var gameover = document.getElementById('gameover');
         var span = document.getElementsByClassName("restart")[0];
@@ -381,6 +384,20 @@ $(document).ready(function() {
       }
     }
   // future game prompts to be added
+  }
+
+  function pause() {
+    console.log("Paused");
+    clearInterval(lane1);
+    clearInterval(lane1car2);
+    clearInterval(lane2);
+    clearInterval(lane2car2);
+    clearInterval(lane3);
+    clearInterval(lane3car2);
+    clearInterval(lane4);
+    clearInterval(lane5);
+    clearInterval(lane5car2);
+    clearInterval(lane5car3);
   }
 });
 // timeRunning = !timeRunning  pause the game, gameover man
