@@ -52,7 +52,7 @@ $(document).ready(function() {
     var lane2car2 = setInterval(function(){car2Lane2()}, 300);
     var lane3 = setInterval(function(){car1Lane3()}, 200);
     var lane3car2 = setInterval(function(){car2Lane3()}, 200);
-    var lane4 = setInterval(function(){car1Lane4()}, 100);
+    var lane4 = setInterval(function(){car1Lane4()}, 60);
     var lane5 = setInterval(function(){car1Lane5()}, 500);
     var lane5van2 = setInterval(function(){car2Lane5()}, 500);
     var lane5van3 = setInterval(function(){car3Lane5()}, 500);
