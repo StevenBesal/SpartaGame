@@ -20,7 +20,7 @@ body{
 
 .modal-content {
   /* Modal Content/Box */
-  background-image: url(Images/pixil-frame-1.png);
+  background-image: url(../Images/pixil-frame-1.png);
   width: 80%;
   height: 40%;
     /* background-color: #fefefe; */
@@ -108,7 +108,7 @@ body{
 }
 
 .home {
-  background-image: url(Images/home.png);
+  background-image: url(../Images/home.png);
   /* background-size: cover; */
   height: 100px;
   width: 800px;
@@ -121,7 +121,7 @@ body{
   height: 100px;
   width: 800px;
   color: grey;
-  background-image: url(Images/toproad.png);
+  background-image: url(../Images/toproad.png);
 }
 
 .lane2{
@@ -129,7 +129,7 @@ body{
   height: 100px;
   width: 800px;
   color: grey;
-  background-image: url(Images/road.png);
+  background-image: url(../Images/road.png);
 }
 
 .lane3{
@@ -137,7 +137,7 @@ body{
   height: 100px;
   width: 800px;
   color: grey;
-  background-image: url(Images/road.png);
+  background-image: url(../Images/road.png);
 }
 
 .lane4{
@@ -146,7 +146,7 @@ body{
   height: 100px;
   width: 800px;
   color: grey;
-  background-image: url(Images/road.png);
+  background-image: url(../Images/road.png);
 }
 
 .lane5{
@@ -155,7 +155,7 @@ body{
   height: 100px;
   width: 800px;
   color: grey;
-  background-image: url(Images/road.png);
+  background-image: url(../Images/road.png);
 }
 
 .start{
@@ -165,7 +165,7 @@ body{
   align-items: center;
   table-layout: fixed;
   color: pink;
-  background-image: url(Images/Startrail.png);
+  background-image: url(../Images/Startrail.png);
 }
 
 #player{
